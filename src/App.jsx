@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles/App.css';
 import Sidebar from './components/Sidebar';
+import Feed from './components/Feed';
+import Widgets from './components/Widgets';
 
 function App() {
   return (
@@ -9,8 +11,10 @@ function App() {
       <Sidebar />
 
       {/* Feed */}
+      <Feed />
 
       {/* Widgets */}
+      <Widgets />
     </div>
   );
 }
