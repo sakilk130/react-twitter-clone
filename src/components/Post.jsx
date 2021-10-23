@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import '../styles/Post.css';
 import { Avatar } from '@material-ui/core';
@@ -8,36 +8,39 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
 
-function Post({ displayName, username, verified, text, image, avatar }) {
-  return (
-    <div className="post">
-      <div className="post__avatar">
-        <Avatar src="https://pbs.twimg.com/profile_images/1028324270550597637/HltKTrzO_200x200.jpg" />
-      </div>
-      <div className="post__body">
-        <div className="post__header">
-          <div className="post__headerText">
-            <h3>
-              Sakil Khan
-              <span className="post__headerSpecial">
-                <VerifiedUserIcon className="post__badge" /> @sakilk130
-              </span>
-            </h3>
+const Post = forwardRef(
+  ({ displayName, username, verified, text, image, avatar }, ref) => {
+    return (
+      <div className="post" ref={ref}>
+        <div className="post__avatar">
+          <Avatar src={avatar} />
+        </div>
+        <div className="post__body">
+          <div className="post__header">
+            <div className="post__headerText">
+              <h3>
+                {displayName}
+                <span className="post__headerSpecial">
+                  {verified && <VerifiedUserIcon className="post__badge" />} @
+                  {username}
+                </span>
+              </h3>
+            </div>
+            <div className="post__headerDescription">
+              <p>{text}</p>
+            </div>
           </div>
-          <div className="post__headerDescription">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A</p>
+          <img src={image} alt="" />
+          <div className="post__footer">
+            <ChatBubbleOutlineIcon fontSize="small" />
+            <RepeatIcon fontSize="small" />
+            <FavoriteBorderIcon fontSize="small" />
+            <PublishIcon fontSize="small" />
           </div>
         </div>
-        <img src="https://dummyimage.com/600x400/000/fff" alt="" />
-        <div className="post__footer">
-          <ChatBubbleOutlineIcon fontSize="small" />
-          <RepeatIcon fontSize="small" />
-          <FavoriteBorderIcon fontSize="small" />
-          <PublishIcon fontSize="small" />
-        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
 
 export default Post;
